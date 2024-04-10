@@ -9,6 +9,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 const form = useForm({
     name: '',
     email: '',
+    role: 1,
     password: '',
     password_confirmation: '',
 });
@@ -24,11 +25,11 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Register" />
+        <Head title="Регистрация" />
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="name" value="Name" />
+                <InputLabel for="name" value="Имя пользователя" />
 
                 <TextInput
                     id="name"
@@ -44,7 +45,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" value="E-mail" />
 
                 <TextInput
                     id="email"
@@ -59,7 +60,25 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="role" value="Роль" />
+                
+                <div class="flex flex-row">
+                    <div>
+                        <input type="radio" id="role_student" value="1" v-model="form.role" />
+                        <label for="role_student">Ученик</label>
+                    </div>
+
+                    <div class="ml-2">
+                        <input type="radio" id="role_teacher" value="2" v-model="form.role" />
+                        <label for="role_teacher">Учитель</label>
+                    </div>
+                </div>
+
+                <InputError class="mt-2" :message="form.errors.role" />
+            </div>
+
+            <div class="mt-4">
+                <InputLabel for="password" value="Пароль" />
 
                 <TextInput
                     id="password"
@@ -74,7 +93,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
+                <InputLabel for="password_confirmation" value="Повторить пароль" />
 
                 <TextInput
                     id="password_confirmation"
@@ -93,11 +112,11 @@ const submit = () => {
                     :href="route('login')"
                     class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                    Already registered?
+                    Есть аккаунт?
                 </Link>
 
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Register
+                    Регистрация
                 </PrimaryButton>
             </div>
         </form>
