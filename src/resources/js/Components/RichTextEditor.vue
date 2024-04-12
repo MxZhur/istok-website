@@ -7,5 +7,5 @@ const model = defineModel<string>({ required: true });
 </script>
 
 <template>
-    <QuillEditor v-model:content="model" content-type="html" toolbar="essential" />
+    <QuillEditor v-model:content="model" content-type="html" toolbar="full" />
 </template>
