@@ -27,6 +27,7 @@
 
         <div class="flex items-center gap-4">
             <PrimaryButton :disabled="form.processing">Сохранить</PrimaryButton>
+            <SecondaryButton @click.prevent="goBack" :disabled="form.processing">Отмена</SecondaryButton>
 
             <Transition enter-active-class="transition ease-in-out" enter-from-class="opacity-0"
                 leave-active-class="transition ease-in-out" leave-to-class="opacity-0">
@@ -46,6 +47,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
 import TagInput from '@/Components/TagInput.vue';
 import RichTextEditor from '@/Components/RichTextEditor.vue';
+import SecondaryButton from '@/Components/SecondaryButton.vue';
 import { TagData } from '../Index.vue';
 
 const props = defineProps<{
@@ -61,7 +63,11 @@ const form = useForm({
 
 const availableTagNames = computed(() => {
     return (props.availableTags ?? []).map(t => t.name);
-})
+});
+
+function goBack() {
+    window.history.back();
+}
 
 function formSubmit() {
     if (props.item) {
