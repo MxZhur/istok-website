@@ -10,6 +10,14 @@
         </div>
 
         <div>
+            <InputLabel for="post_body" value="Содержимое" />
+
+            <RichTextEditor id="post_body" type="text" class="mt-1 block w-full" v-model="form.body" />
+
+            <InputError class="mt-2" :message="form.errors.body" />
+        </div>
+
+        <div>
             <InputLabel for="tags" value="Теги" />
 
             <TagInput v-model="form.tags" :availableTags="availableTagNames" />
@@ -29,6 +37,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import { BlogPostData } from '../Edit.vue';
 import InputError from '@/Components/InputError.vue';
@@ -36,7 +45,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
 import TagInput from '@/Components/TagInput.vue';
-import { computed } from 'vue';
+import RichTextEditor from '@/Components/RichTextEditor.vue';
 import { TagData } from '../Index.vue';
 
 const props = defineProps<{
