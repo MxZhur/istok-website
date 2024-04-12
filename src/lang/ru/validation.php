@@ -150,7 +150,7 @@ return [
         'string' => 'Поле ":attribute" должно содержать :size символов.',
     ],
     'starts_with' => 'Поле ":attribute" должно начинаться со следующего: :values.',
-    'string' => 'Поле ":attribute" должно быт строкой.',
+    'string' => 'Поле ":attribute" должно быть строкой.',
     'timezone' => 'Поле ":attribute" должно быть корректным часовым поясом.',
     'unique' => 'Значение поля ":attribute" уже занято.',
     'uploaded' => 'Файл из поля ":attribute" не удалось загрузить.',
