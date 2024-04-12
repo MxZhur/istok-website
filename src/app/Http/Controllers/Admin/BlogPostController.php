@@ -94,6 +94,9 @@ class BlogPostController extends Controller
 
         $tagsIds = $tagService->populateTags($data['tags']);
 
+        $item->fill($data);
+        $item->save();
+
         $item->tags()->sync($tagsIds);
 
         return redirect(route('admin.blog_posts.index'));
