@@ -2,14 +2,7 @@
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import BlogPostForm from './Partials/BlogPostForm.vue';
-import { TagData } from './Index.vue';
-
-export type BlogPostData = {
-    id: number;
-    title: string;
-    body: string;
-    tags: TagData[];
-};
+import { BlogPostData, TagData } from '@/types';
 
 defineProps<{
     item: BlogPostData;

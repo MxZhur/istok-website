@@ -5,11 +5,7 @@ import { Head, Link } from '@inertiajs/vue3';
 import BlogPostItem from './Partials/BlogPostItem.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AddIcon from '@/Components/Icons/AddIcon.vue';
-
-export type TagData = {
-    id: number;
-    name: string;
-}
+import { TagData } from '@/types';
 
 export type BlogPostItemData = {
     id: number;
@@ -52,8 +48,15 @@ defineProps<{
         </template>
 
         <div>
-            <BlogPostItem v-for="item in items.data" :item="item" :key="item.id" />
-            <Pagination :links="items.links" />
+            <div v-if="items.data.length > 0">
+                <BlogPostItem v-for="item in items.data" :item="item" :key="item.id" />
+                <Pagination :links="items.links" />
+            </div>
+            <div v-else>
+                <div class="text-sm text-gray-500 italic">
+                    На текущий момент здесь нет контента.
+                </div>
+            </div>
         </div>
 
     </AdminLayout>

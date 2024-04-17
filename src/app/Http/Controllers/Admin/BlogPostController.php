@@ -7,7 +7,7 @@ use App\Http\Requests\Admin\BlogPost\StoreRequest;
 use App\Http\Requests\Admin\BlogPost\UpdateRequest;
 use App\Models\BlogPost;
 use App\Models\Tag;
-use App\Services\TagService;
+use App\Services\BlogPostService;
 use Inertia\Inertia;
 
 class BlogPostController extends Controller
@@ -39,21 +39,13 @@ class BlogPostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequest $request, TagService $tagService)
-    {
+    public function store(
+        StoreRequest $request,
+        BlogPostService $blogPostService
+    ) {
         $data = $request->validated();
 
-        if ($data['body'] === null) {
-            $data['body'] = '';
-        }
-
-        $tagsIds = $tagService->populateTags($data['tags']);
-
-        unset($data['tags']);
-
-        $newItem = BlogPost::create($data);
-
-        $newItem->tags()->attach($tagsIds);
+        $blogPostService->store($data);
 
         return redirect(route('admin.blog_posts.index'));
     }
@@ -82,22 +74,16 @@ class BlogPostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, string $id, TagService $tagService)
-    {
+    public function update(
+        UpdateRequest $request,
+        string $id,
+        BlogPostService $blogPostService
+    ) {
         $item = BlogPost::findOrFail($id);
 
         $data = $request->validated();
 
-        if ($data['body'] === null) {
-            $data['body'] = '';
-        }
-
-        $tagsIds = $tagService->populateTags($data['tags']);
-
-        $item->fill($data);
-        $item->save();
-
-        $item->tags()->sync($tagsIds);
+        $blogPostService->update($item, $data);
 
         return redirect(route('admin.blog_posts.index'));
     }

@@ -20,7 +20,22 @@ class BlogPost extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    protected $with = ['tags'];
+    public function storage_files()
+    {
+        return $this->belongsToMany(StorageFile::class);
+    }
+
+    protected $with = ['tags', 'storage_files'];
+
+    public static function booted()
+    {
+        static::deleting(function ($blogPost) {
+            // Delete the stored files
+            foreach ($blogPost->storage_files as $storageFile) {
+                $storageFile->delete();
+            }
+        });
+    }
 
     /**
      * Get the attributes that should be cast.

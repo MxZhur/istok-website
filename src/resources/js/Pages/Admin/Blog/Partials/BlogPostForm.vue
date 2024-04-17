@@ -25,6 +25,20 @@
             <InputError class="mt-2" :message="form.errors.tags" />
         </div>
 
+        <div>
+            <InputLabel for="tags" value="Изображения" />
+
+            <FileInput 
+                id="blog_post_files"
+                accept="image/*"
+                :existingFiles="item?.storage_files"
+                v-model:files-to-delete="form.filesToDelete"
+                v-model:new-files="form.newFiles"
+            />
+
+            <InputError class="mt-2" :message="form.errors.newFiles" />
+        </div>
+
         <div class="flex items-center gap-4">
             <PrimaryButton :disabled="form.processing">Сохранить</PrimaryButton>
             <SecondaryButton @click.prevent="goBack" :disabled="form.processing">Отмена</SecondaryButton>
@@ -40,7 +54,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useForm } from '@inertiajs/vue3';
-import { BlogPostData } from '../Edit.vue';
+import { BlogPostData, TagData } from '@/types';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -48,7 +62,7 @@ import TextInput from '@/Components/TextInput.vue';
 import TagInput from '@/Components/TagInput.vue';
 import RichTextEditor from '@/Components/RichTextEditor.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
-import { TagData } from '../Index.vue';
+import FileInput from '@/Components/FileInput/FileInput.vue';
 
 const props = defineProps<{
     item?: BlogPostData;
@@ -56,9 +70,13 @@ const props = defineProps<{
 }>();
 
 const form = useForm({
+    _method: props.item ? 'patch' : 'post',
     title: props.item?.title ?? '',
     body: props.item?.body ?? '',
     tags: props.item?.tags.map(t => t.name) ?? [],
+    filesToDelete: [],
+    newFiles: <File[]>[],
+    // newFiles: <FileList | null>null,
 });
 
 const availableTagNames = computed(() => {
@@ -71,7 +89,9 @@ function goBack() {
 
 function formSubmit() {
     if (props.item) {
-        form.patch(route('admin.blog_posts.update', props.item.id));
+        form.post(route('admin.blog_posts.update', props.item.id), {
+            preserveState: true,
+        });
     } else {
         form.post(route('admin.blog_posts.store'));
     }

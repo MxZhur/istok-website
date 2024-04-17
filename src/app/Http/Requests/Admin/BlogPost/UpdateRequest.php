@@ -25,6 +25,9 @@ class UpdateRequest extends FormRequest
             'title' => ['string', 'required'],
             'body' => ['string', 'nullable'],
             'tags' => ['array', 'nullable'],
+            'newFiles' => ['array', 'nullable'],
+            'newFiles.*' => ['file'],
+            'filesToDelete' => ['array', 'nullable'],
         ];
     }
 }
