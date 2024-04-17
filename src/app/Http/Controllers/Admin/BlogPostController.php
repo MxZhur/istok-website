@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\BlogPost\UpdateRequest;
 use App\Models\BlogPost;
 use App\Models\Tag;
 use App\Services\BlogPostService;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class BlogPostController extends Controller
@@ -15,11 +16,40 @@ class BlogPostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = BlogPost::query()
-            ->orderByDesc('created_at')
-            ->paginate(20);
+        $q = $request->query('q');
+
+        $itemsQuery = BlogPost::query();
+
+        if (!empty($q)) {
+            $itemsQuery->where('title', 'LIKE', '%' . trim($q) . '%', 'or');
+
+            $itemsQuery->whereIn('id', function ($query) use ($q) {
+
+                $tagsIds = Tag::query()
+                    ->where('name', 'LIKE', '%' . trim($q) . '%')
+                    ->pluck('id')
+                    ->toArray();
+
+                $query->select('blog_post_id')
+                    ->from('blog_post_tag')
+                    ->whereIn('tag_id', $tagsIds);
+
+            }, 'or');
+        }
+
+        $itemsQuery->orderByDesc('created_at');
+
+        /**@var LengthAwarePaginator */
+        $paginate = $itemsQuery->paginate(20, [
+            'id',
+            'title',
+            'created_at',
+            'updated_at',
+        ]);
+
+        $items = $paginate->withQueryString();
 
         return Inertia::render('Admin/Blog/Index', [
             'items' => $items

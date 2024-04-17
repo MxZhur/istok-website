@@ -6,6 +6,7 @@ import BlogPostItem from './Partials/BlogPostItem.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AddIcon from '@/Components/Icons/AddIcon.vue';
 import { TagData } from '@/types';
+import BlogPostSearchForm from './Partials/BlogPostSearchForm.vue';
 
 export type BlogPostItemData = {
     id: number;
@@ -29,20 +30,23 @@ defineProps<{
 
 <template>
 
-    <Head title="Блог" />
+    <Head title="Управление блогом" />
 
     <AdminLayout>
         <template #heading>
-            <div class="flex flex-row justify-between">
-                <div>
-                    Блог
-                </div>
-                <div>
+            <div class="flex flex-row justify-between items-center">
+                <div class="flex flex-col justify-start items-start sm:flex-row sm:justify-start sm:items-center ">
+                    <div class="mr-4">
+                        Управление блогом
+                    </div>
                     <Link :href="route('admin.blog_posts.create')">
                     <PrimaryButton>
                         <AddIcon /> Новая статья
                     </PrimaryButton>
                     </Link>
+                </div>
+                <div class="flex flex-row justify-end items-center">
+                    <BlogPostSearchForm />
                 </div>
             </div>
         </template>
