@@ -76,7 +76,6 @@ const form = useForm({
     tags: props.item?.tags.map(t => t.name) ?? [],
     filesToDelete: [],
     newFiles: <File[]>[],
-    // newFiles: <FileList | null>null,
 });
 
 const availableTagNames = computed(() => {
@@ -93,7 +92,9 @@ function formSubmit() {
             preserveState: true,
         });
     } else {
-        form.post(route('admin.blog_posts.store'));
+        form.post(route('admin.blog_posts.store'), {
+            preserveState: true,
+        });
     }
 }
 
