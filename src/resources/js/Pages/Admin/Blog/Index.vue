@@ -5,22 +5,13 @@ import { Head, Link } from '@inertiajs/vue3';
 import BlogPostItem from './Partials/BlogPostItem.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AddIcon from '@/Components/Icons/AddIcon.vue';
-import { TagData } from '@/types';
+import { BlogPostItemData } from '@/types';
 import BlogPostSearchForm from './Partials/BlogPostSearchForm.vue';
-
-export type BlogPostItemData = {
-    id: number;
-    title: string;
-    tags: Array<TagData>
-    created_at: string | null;
-    updated_at: string | null;
-};
 
 type ItemsProp = {
     data: Array<BlogPostItemData>;
     links: Array<any>;
 };
-
 
 defineProps<{
     items: ItemsProp;

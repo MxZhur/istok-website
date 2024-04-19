@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import SiteLayout from '@/Layouts/SiteLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
+import { BlogPostData } from '@/types';
+import SiteLayout from '@/Layouts/SiteLayout.vue';
+import BlogPostViewer from '@/Components/BlogPostViewer.vue';
+import MutedText from '@/Components/MutedText.vue';
 
 defineProps<{
+    latestBlogPost: BlogPostData | null;
 }>();
 
 </script>
@@ -12,8 +16,16 @@ defineProps<{
     <Head title="Главная страница" />
 
     <SiteLayout>
-        <div class="p-6 text-gray-500 italic">
-            Это главная страница сайта. Скоро вместо этого текста появится полезная информация.
+        <div v-if="latestBlogPost !== null">
+            <BlogPostViewer :item="latestBlogPost" />
+            <div class="text-right">
+                <Link :href="route('blog.show', latestBlogPost.id)">
+                    На страницу статьи
+                </Link>
+            </div>
         </div>
+        <MutedText v-else>
+            На текущий момент новостей нет.
+        </MutedText>
     </SiteLayout>
 </template>

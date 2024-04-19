@@ -9,12 +9,7 @@
             <TagPill v-for="tag in item.tags" :name="tag.name" />
         </div>
         <div class="flex flex-row justify-between items-center">
-            <div class="text-gray-600 text-sm">
-                {{ item.created_at }}
-                <template v-if="item.updated_at !== null && item.updated_at !== item.created_at">
-                    &nbsp; (ред. {{ item.updated_at }})
-                </template>
-            </div>
+            <CreationDateTimeViewer :created_at="item.created_at" :updated_at="item.updated_at" />
             <div>
                 <DangerButton @click="deleteItem" title="Удалить">
                     <TrashIcon />
@@ -26,10 +21,11 @@
 
 <script setup lang="ts">
 import { Link, router } from '@inertiajs/vue3';
-import { BlogPostItemData } from '../Index.vue';
 import TagPill from '@/Components/TagPill.vue';
 import DangerButton from '@/Components/DangerButton.vue';
+import CreationDateTimeViewer from '@/Components/CreationDateTimeViewer.vue';
 import TrashIcon from '@/Components/Icons/TrashIcon.vue';
+import { BlogPostItemData } from '@/types';
 
 const props = defineProps<{
     item: BlogPostItemData;

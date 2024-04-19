@@ -7,10 +7,20 @@ export interface User {
     is_admin: boolean;
 }
 
+export type BlogPostItemData = {
+    id: number;
+    title: string;
+    created_at: string | null;
+    updated_at: string | null;
+    tags: TagData[];
+};
+
 export type BlogPostData = {
     id: number;
     title: string;
     body: string;
+    created_at: string | null;
+    updated_at: string | null;
     tags: TagData[];
     storage_files: StorageFileData[];
 };
