@@ -56,7 +56,7 @@ function cancelNewFile(file: File) {
 
 <template>
     <div class="flex flex-row justify-start items-center">
-        <FilePreviewItem v-for="f in allFiles" :file="f" @remove-existing-file="removeExistingFile"
+        <FilePreviewItem v-for="(f, index) in allFiles" :key="index" :file="f" @remove-existing-file="removeExistingFile"
             @cancel-new-file="cancelNewFile" />
     </div>
 

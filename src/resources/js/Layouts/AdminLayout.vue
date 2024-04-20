@@ -40,7 +40,8 @@ const showingNavigationDropdown = ref(false);
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink v-for="navLink in navLinks" :href="route(navLink.route)"
-                                    :active="route().current(navLink.route)">
+                                    :active="route().current(navLink.route)"
+                                    :key="navLink.route">
                                     {{ navLink.title }}
                                 </NavLink>
                             </div>
@@ -103,7 +104,8 @@ const showingNavigationDropdown = ref(false);
                     class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink v-for="navLink in navLinks" :href="route(navLink.route)"
-                            :active="route().current(navLink.route)">
+                            :active="route().current(navLink.route)"
+                            :key="navLink.route">
                             {{ navLink.title }}
                         </ResponsiveNavLink>
                     </div>

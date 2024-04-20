@@ -6,7 +6,7 @@
             </Link>
         </div>
         <div>
-            <TagPill v-for="tag in item.tags" :name="tag.name" />
+            <TagPill v-for="tag in item.tags" :name="tag.name" :key="item.id" />
         </div>
         <div class="flex flex-row justify-between items-center">
             <CreationDateTimeViewer :created_at="item.created_at" :updated_at="item.updated_at" />

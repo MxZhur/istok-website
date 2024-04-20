@@ -24,7 +24,7 @@ const navLinks: NavLinkData[] = [
             Меню
         </div>
         <div>
-            <Link v-for="navLink in navLinks" :href="route(navLink.route)">
+            <Link v-for="navLink in navLinks" :href="route(navLink.route)" :key="navLink.route">
                 {{ navLink.title }}
             </Link>
         </div>
