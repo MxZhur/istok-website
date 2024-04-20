@@ -25,6 +25,22 @@ export type BlogPostData = {
     storage_files: StorageFileData[];
 };
 
+export type EntityType = 'blog_post';
+
+export type CommentData = {
+    id: number;
+    entity_type: EntityType;
+    entity_id: number;
+    parent_id: number;
+    user_id: number;
+    text: string;
+    is_blocked: boolean;
+    created_at: string | null;
+    updated_at: string | null;
+    user: User;
+    children?: CommentData[];
+}
+
 export type TagData = {
     id: number;
     name: string;

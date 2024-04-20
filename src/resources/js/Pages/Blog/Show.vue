@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
-import { BlogPostData } from '@/types';
+import { BlogPostData, CommentData } from '@/types';
 import SiteLayout from '@/Layouts/SiteLayout.vue';
 import BlogPostViewer from '@/Components/BlogPostViewer.vue';
+import CommentTree from '@/Components/CommentTree.vue';
 
 const props = defineProps<{
     item: BlogPostData;
+    comments: CommentData[];
 }>();
 
 </script>
@@ -18,11 +20,7 @@ const props = defineProps<{
         <BlogPostViewer :item="item" />
 
         <!-- TODO: Comments -->
-        <!-- <div> -->
-            <!-- <div class="text-2xl"> -->
-                <!-- Комментарии -->
-            <!-- </div> -->
-        <!-- </div> -->
+        <CommentTree :comments="comments" entity_type="blog_post" :entity_id="item.id" />
 
     </SiteLayout>
 </template>

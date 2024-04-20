@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
+use App\Models\Comment;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -49,11 +50,19 @@ class BlogController extends Controller
         ]);
     }
 
+
     public function show(string $id) {
         $item = BlogPost::findOrFail($id);
 
+        $comments = Comment::root()
+            ->byEntity(Comment::ENTITY_BLOG_POST, $id)
+            ->orderByDesc('created_at')
+            ->with('children')
+            ->get();
+
         return Inertia::render('Blog/Show', [
             'item' => $item,
+            'comments' => $comments,
         ]);
     }
 }
