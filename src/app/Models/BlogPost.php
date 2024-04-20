@@ -34,6 +34,10 @@ class BlogPost extends Model
             foreach ($blogPost->storage_files as $storageFile) {
                 $storageFile->delete();
             }
+
+            Comment::root()
+                ->byEntity(Comment::ENTITY_BLOG_POST, $blogPost->id)
+                ->delete();
         });
     }
 
