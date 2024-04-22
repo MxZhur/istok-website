@@ -6,6 +6,8 @@ ARG GID
 ENV UID=${UID}
 ENV GID=${GID}
 
+ADD ./php/upload.ini /usr/local/etc/php/conf.d/
+
 RUN mkdir -p /var/www/html
 
 WORKDIR /var/www/html
