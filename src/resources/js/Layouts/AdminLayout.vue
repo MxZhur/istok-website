@@ -17,6 +17,14 @@ const navLinks: NavLinkData[] = [
         title: 'Блог',
         route: 'admin.blog_posts.index',
     },
+    {
+        title: 'Материалы для учеников',
+        route: 'admin.learning_materials.index',
+    },
+    // {
+    //     title: 'Материалы для коллег',
+    //     route: 'admin.teaching_materials.index',
+    // },
 ];
 
 const showingNavigationDropdown = ref(false);

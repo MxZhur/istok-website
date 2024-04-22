@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
-import { BlogPostData, CommentData } from '@/types';
+import { CommentData, LearningMaterialData } from '@/types';
 import SiteLayout from '@/Layouts/SiteLayout.vue';
-import BlogPostViewer from '@/Components/BlogPostViewer.vue';
+import LearningMaterialViewer from './Partials/LearningMaterialViewer.vue';
 import CommentTree from '@/Components/CommentTree.vue';
 
 const props = defineProps<{
-    item: BlogPostData;
+    item: LearningMaterialData;
     comments: CommentData[];
 }>();
 
@@ -17,9 +17,9 @@ const props = defineProps<{
     <Head :title="item.title" />
 
     <SiteLayout>
-        <BlogPostViewer :item="item" />
+        <LearningMaterialViewer :item="item" />
 
-        <CommentTree :comments="comments" entity_type="blog_post" :entity_id="item.id" />
+        <CommentTree :comments="comments" entity_type="learning_material" :entity_id="item.id" />
 
     </SiteLayout>
 </template>

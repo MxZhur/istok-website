@@ -25,7 +25,27 @@ export type BlogPostData = {
     storage_files: StorageFileData[];
 };
 
-export type EntityType = 'blog_post';
+export type LearningMaterialItemData = {
+    id: number;
+    title: string;
+    grade: number;
+    created_at: string | null;
+    updated_at: string | null;
+    tags: TagData[];
+};
+
+export type LearningMaterialData = {
+    id: number;
+    title: string;
+    body: string;
+    grade: number;
+    created_at: string | null;
+    updated_at: string | null;
+    tags: TagData[];
+    storage_files: StorageFileData[];
+};
+
+export type EntityType = 'blog_post' | 'learning_material' | 'teaching_material';
 
 export type CommentData = {
     id: number;

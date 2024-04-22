@@ -2,23 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BlogPost;
 use App\Models\Comment;
+use App\Models\LearningMaterial;
 use App\Models\Tag;
 use App\Services\CommentService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class BlogController extends Controller
+class LearningMaterialController extends Controller
 {
-    public function index(Request $request)
+    public function index()
+    {
+        return Inertia::render('LearningMaterial/Index', []);
+    }
+
+
+    public function grade(Request $request, int $grade)
     {
         $q = $request->query('q');
 
-        $itemsQuery = BlogPost::query();
+        $itemsQuery = LearningMaterial::query()
+            ->byGrade($grade);
 
         if (!empty($q)) {
-            $itemsQuery->where('title', 'LIKE', '%' . trim($q) . '%', 'or');
+            $itemsQuery->where('title', 'LIKE', '%' . trim($q) . '%');
 
             $itemsQuery->whereIn('id', function ($query) use ($q) {
 
@@ -27,8 +34,8 @@ class BlogController extends Controller
                     ->pluck('id')
                     ->toArray();
 
-                $query->select('blog_post_id')
-                    ->from('blog_post_tag')
+                $query->select('learning_material_id')
+                    ->from('learning_material_tag')
                     ->whereIn('tag_id', $tagsIds);
 
             }, 'or');
@@ -40,24 +47,27 @@ class BlogController extends Controller
         $paginate = $itemsQuery->paginate(20, [
             'id',
             'title',
+            'grade',
             'created_at',
             'updated_at',
         ]);
 
         $items = $paginate->withQueryString();
 
-        return Inertia::render('Blog/Index', [
-            'items' => $items
+        return Inertia::render('LearningMaterial/Grade', [
+            'grade' => $grade,
+            'items' => $items,
         ]);
     }
 
 
-    public function show(string $id, CommentService $commentService) {
-        $item = BlogPost::findOrFail($id);
+    public function show(int $grade, int $id, CommentService $commentService)
+    {
+        $item = LearningMaterial::findOrFail($id);
 
-        $comments = $commentService->getCommentsTree(Comment::ENTITY_BLOG_POST, $id);
+        $comments = $commentService->getCommentsTree(Comment::ENTITY_LEARNING_MATERIAL, $id);
 
-        return Inertia::render('Blog/Show', [
+        return Inertia::render('LearningMaterial/Show', [
             'item' => $item,
             'comments' => $comments,
         ]);

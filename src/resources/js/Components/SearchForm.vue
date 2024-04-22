@@ -17,7 +17,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SearchIcon from '@/Components/Icons/SearchIcon.vue';
 
 const props = defineProps<{
-    searchRoute: string;
+    searchUrl: string;
 }>();
 
 const form = useForm({
@@ -25,7 +25,7 @@ const form = useForm({
 });
 
 function formSubmit() {
-    form.get(route(props.searchRoute), {
+    form.get(props.searchUrl, {
         preserveState: true,
     });
 }

@@ -11,6 +11,8 @@ class Comment extends Model
     use HasFactory;
 
     public const ENTITY_BLOG_POST = 'blog_post';
+    public const ENTITY_LEARNING_MATERIAL = 'learning_material';
+    public const ENTITY_TEACHING_MATERIAL = 'teaching_material';
 
     protected $fillable = [
         'entity_type',

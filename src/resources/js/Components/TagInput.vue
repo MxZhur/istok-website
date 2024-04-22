@@ -40,7 +40,7 @@ const foundTags = computed(() => {
     if (text.length === 0) {
         return [];
     }
-    return props.availableTags.filter(t => t.includes(text));
+    return props.availableTags.filter(t => t.toLowerCase().includes(text.toLowerCase()));
 });
 
 </script>

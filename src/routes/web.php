@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LearningMaterialController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,6 +14,14 @@ Route::prefix('blog')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('blog.index');
     Route::get('/{id}', [BlogController::class, 'show'])->name('blog.show');
 });
+
+Route::prefix('learning_material')->group(function () {
+    Route::get('/', [LearningMaterialController::class, 'index'])->name('learning_material.index');
+    Route::get('/{grade}', [LearningMaterialController::class, 'grade'])->name('learning_material.grade');
+    Route::get('/{grade}/{id}', [LearningMaterialController::class, 'show'])->name('learning_material.show');
+});
+
+Route::get('/download/{id}', [DownloadController::class, 'download'])->name('file.download');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
