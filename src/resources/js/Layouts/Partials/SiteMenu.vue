@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
 
 const expanded = ref(false);
@@ -7,18 +7,28 @@ const expanded = ref(false);
 type NavLinkData = {
     title: string;
     route: string;
+    access?: string;
 }
 
-const navLinks: NavLinkData[] = [
-    {
-        title: 'Блог',
-        route: 'blog.index',
-    },
-    {
-        title: 'Материалы для учеников',
-        route: 'learning_material.index',
-    },
-];
+const navLinks = computed(() => {
+    let links: NavLinkData[] = [
+        {
+            title: 'Блог',
+            route: 'blog.index',
+        },
+        {
+            title: 'Материалы для учеников',
+            route: 'learning_material.index',
+        },
+        {
+            title: 'Материалы для учителей',
+            route: 'teaching_material.index',
+            access: 'teacher'
+        },
+    ];
+
+    return links;
+});
 
 </script>
 
@@ -28,9 +38,10 @@ const navLinks: NavLinkData[] = [
             Меню
         </div>
         <div>
-            <div v-for="navLink in navLinks" >
-                <Link :href="route(navLink.route)" :key="navLink.route">
-                    {{ navLink.title }}
+            <div v-for="navLink in navLinks">
+                <Link v-if="navLink.access !== 'teacher' || ($page.props.auth.user && $page.props.auth.user.role === 2)"
+                    :href="route(navLink.route)" :key="navLink.route">
+                {{ navLink.title }}
                 </Link>
             </div>
         </div>

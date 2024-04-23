@@ -45,6 +45,28 @@ export type LearningMaterialData = {
     storage_files: StorageFileData[];
 };
 
+export type TeachingMaterialType = 'methodological_work' | 'educational_work';
+
+export type TeachingMaterialItemData = {
+    id: number;
+    title: string;
+    type: TeachingMaterialType;
+    created_at: string | null;
+    updated_at: string | null;
+    tags: TagData[];
+};
+
+export type TeachingMaterialData = {
+    id: number;
+    title: string;
+    body: string;
+    type: TeachingMaterialType;
+    created_at: string | null;
+    updated_at: string | null;
+    tags: TagData[];
+    storage_files: StorageFileData[];
+};
+
 export type EntityType = 'blog_post' | 'learning_material' | 'teaching_material';
 
 export type CommentData = {

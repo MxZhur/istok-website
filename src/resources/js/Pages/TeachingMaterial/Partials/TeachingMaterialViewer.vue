@@ -6,10 +6,6 @@
         <CreationDateTimeViewer :created_at="item.created_at" :updated_at="item.updated_at" />
     </div>
 
-    <div>
-        Материал для {{ item.grade }} класса
-    </div>
-
     <HtmlViewer :content="item.body" />
 
     <DownloadLinksList :files="item.storage_files" />
@@ -20,14 +16,14 @@
 </template>
 
 <script setup lang="ts">
-import { LearningMaterialData } from '@/types';
+import { TeachingMaterialData } from '@/types';
 import CreationDateTimeViewer from '@/Components/CreationDateTimeViewer.vue';
 import HtmlViewer from '@/Components/HtmlViewer.vue';
 import TagPill from '@/Components/TagPill.vue';
 import DownloadLinksList from '@/Components/DownloadLinksList.vue';
 
 const props = defineProps<{
-    item: LearningMaterialData;
+    item: TeachingMaterialData;
 }>();
 
 </script>

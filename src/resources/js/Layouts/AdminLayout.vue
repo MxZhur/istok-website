@@ -21,10 +21,10 @@ const navLinks: NavLinkData[] = [
         title: 'Материалы для учеников',
         route: 'admin.learning_materials.index',
     },
-    // {
-    //     title: 'Материалы для коллег',
-    //     route: 'admin.teaching_materials.index',
-    // },
+    {
+        title: 'Материалы для коллег',
+        route: 'admin.teaching_materials.index',
+    },
 ];
 
 const showingNavigationDropdown = ref(false);
