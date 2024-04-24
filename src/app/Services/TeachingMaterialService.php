@@ -25,7 +25,7 @@ class TeachingMaterialService
 
         $tagsIds = $tagService->populateTags($data['tags']);
 
-        $newFileModels = $storageFileService->saveFiles($data['newFiles'], 'blog_post_images');
+        $newFileModels = $storageFileService->saveFiles($data['newFiles'], 'teaching_material_files');
 
         $newFileIds = array_map(function (StorageFile $file) {
             return $file->id;
@@ -63,7 +63,7 @@ class TeachingMaterialService
 
         $tagsIds = $tagService->populateTags($data['tags']);
 
-        $newFileModels = $storageFileService->saveFiles($data['newFiles'], 'blog_post_images');
+        $newFileModels = $storageFileService->saveFiles($data['newFiles'], 'teaching_material_files');
 
         $newFileIds = array_map(function (StorageFile $file) {
             return $file->id;
