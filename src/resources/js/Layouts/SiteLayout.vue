@@ -15,7 +15,7 @@ import SiteMenu from './Partials/SiteMenu.vue';
                     <SiteMenu />
                 </div>
                 <main class="w-full md:w-9/12 rounded-md p-4 bg-white">
-                    <div class="text-3xl font-bold">
+                    <div class="text-3xl font-bold mb-4">
                         <slot name="heading"></slot>
                     </div>
                     <!-- Page Content -->

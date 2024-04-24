@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ChangeLogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
@@ -26,6 +27,11 @@ Route::prefix('teaching_material')->middleware('teacher')->group(function () {
     Route::get('/', [TeachingMaterialController::class, 'index'])->name('teaching_material.index');
     Route::get('/{type}', [TeachingMaterialController::class, 'type'])->name('teaching_material.type');
     Route::get('/{type}/{id}', [TeachingMaterialController::class, 'show'])->name('teaching_material.show');
+});
+
+Route::prefix('change_log')->group(function () {
+    Route::get('/', [ChangeLogController::class, 'index'])->name('change_log.index');
+    Route::get('/{year}', [ChangeLogController::class, 'year'])->name('change_log.year');
 });
 
 Route::get('/download/{id}', [DownloadController::class, 'download'])->name('file.download');

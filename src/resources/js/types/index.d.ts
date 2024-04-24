@@ -96,6 +96,17 @@ export type StorageFileData = {
     type: string;
 }
 
+export type ChangeLogEntryData = {
+    id: number;
+    year: number;
+    section: string;
+    action_type: string;
+    link_name: string;
+    link_url: string;
+    created_at: string | null;
+    updated_at: string | null;
+}
+
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
     auth: {
         user: User;
