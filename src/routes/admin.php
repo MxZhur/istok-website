@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\LearningMaterialController;
 use App\Http\Controllers\Admin\TeachingMaterialController;
 use Illuminate\Support\Facades\Route;
@@ -16,4 +17,6 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
     Route::get('comments', [CommentController::class, 'index'])->name('admin.comments.index');
     Route::put('comments/{id}/block', [CommentController::class, 'block'])->name('admin.comments.block');
+
+    Route::get('feedback', [FeedbackController::class, 'index'])->name('admin.feedback.index');
 });

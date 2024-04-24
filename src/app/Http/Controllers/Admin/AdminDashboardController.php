@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
-use Illuminate\Http\Request;
+use App\Models\FeedbackEntry;
 use Inertia\Inertia;
 
 class AdminDashboardController extends Controller
@@ -15,11 +15,14 @@ class AdminDashboardController extends Controller
             ->take(20)
             ->get();
 
-        // TODO: $latestFeedback
+        $latestFeedback = FeedbackEntry::query()
+            ->orderByDesc('created_at')
+            ->take(20)
+            ->get();
 
         return Inertia::render('Admin/Dashboard', [
             'latestComments' => $latestComments,
-            // TODO: 'latestFeedback' => $latestFeedback,
+            'latestFeedback' => $latestFeedback,
         ]);
     }
 }

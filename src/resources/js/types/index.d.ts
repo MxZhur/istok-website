@@ -83,6 +83,15 @@ export type CommentData = {
     children?: CommentData[];
 }
 
+export type FeedbackEntryData = {
+    id: number;
+    user_id: number;
+    text: string;
+    created_at: string | null;
+    updated_at: string | null;
+    user: User;
+}
+
 export type TagData = {
     id: number;
     name: string;

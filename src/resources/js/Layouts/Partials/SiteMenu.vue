@@ -29,6 +29,10 @@ const navLinks = computed(() => {
             title: 'Журнал изменений',
             route: 'change_log.index',
         },
+        {
+            title: 'Обратная связь',
+            route: 'feedback.create',
+        },
     ];
 
     return links;
@@ -42,11 +46,13 @@ const navLinks = computed(() => {
             Меню
         </div>
         <div>
-            <div v-for="navLink in navLinks" class="py-2">
-                <Link v-if="navLink.access !== 'teacher' || ($page.props.auth.user && $page.props.auth.user.role === 2)"
-                    :href="route(navLink.route)" :key="navLink.route">
-                {{ navLink.title }}
-                </Link>
+            <div v-for="navLink in navLinks" :key="navLink.route">
+                <div class="py-2"
+                    v-if="navLink.access !== 'teacher' || ($page.props.auth.user && $page.props.auth.user.role === 2)">
+                    <Link :href="route(navLink.route)" :key="navLink.route">
+                    {{ navLink.title }}
+                    </Link>
+                </div>
             </div>
         </div>
     </div>
