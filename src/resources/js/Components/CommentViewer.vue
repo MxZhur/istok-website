@@ -1,5 +1,5 @@
 <template>
-    <div class="py-3">
+    <div class="py-3" :class="{'line-through': comment.is_blocked}">
         <div class="text-sm font-bold inline-block">
             {{ comment.user.name }}
         </div>
