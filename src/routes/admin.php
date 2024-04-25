@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\CommentController;
@@ -17,6 +18,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
     Route::get('comments', [CommentController::class, 'index'])->name('admin.comments.index');
     Route::put('comments/{id}/block', [CommentController::class, 'block'])->name('admin.comments.block');
+    
+    Route::get('about', [AboutController::class, 'edit'])->name('admin.about.edit');
+    Route::put('about', [AboutController::class, 'update'])->name('admin.about.update');
 
     Route::get('feedback', [FeedbackController::class, 'index'])->name('admin.feedback.index');
 });

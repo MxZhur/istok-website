@@ -105,6 +105,15 @@ export type StorageFileData = {
     type: string;
 }
 
+export type CustomPageData = {
+    id: number;
+    key: string;
+    title: string;
+    body: string;
+    created_at: string | null;
+    updated_at: string | null;
+}
+
 export type ChangeLogEntryData = {
     id: number;
     year: number;

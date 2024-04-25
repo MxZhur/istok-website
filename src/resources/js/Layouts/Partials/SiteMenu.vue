@@ -33,6 +33,10 @@ const navLinks = computed(() => {
             title: 'Обратная связь',
             route: 'feedback.create',
         },
+        {
+            title: 'О себе',
+            route: 'about.index',
+        },
     ];
 
     return links;

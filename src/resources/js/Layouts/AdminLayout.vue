@@ -18,12 +18,16 @@ const navLinks: NavLinkData[] = [
         route: 'admin.blog_posts.index',
     },
     {
-        title: 'Материалы для учеников',
+        title: 'Для учеников',
         route: 'admin.learning_materials.index',
     },
     {
-        title: 'Материалы для коллег',
+        title: 'Для коллег',
         route: 'admin.teaching_materials.index',
+    },
+    {
+        title: 'О себе',
+        route: 'admin.about.edit',
     },
 ];
 

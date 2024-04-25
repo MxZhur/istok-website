@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blog_posts', function (Blueprint $table) {
+        Schema::create('custom_pages', function (Blueprint $table) {
             $table->id();
+            $table->string('key')->unique();
             $table->text('title');
             $table->longText('body');
-            $table->boolean('is_pinned')->default(false);
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('blog_posts');
+        Schema::dropIfExists('custom_pages');
     }
 };

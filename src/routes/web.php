@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ChangeLogController;
 use App\Http\Controllers\CommentController;
@@ -38,6 +39,8 @@ Route::prefix('change_log')->group(function () {
 Route::get('/download/{id}', [DownloadController::class, 'download'])->name('file.download');
 
 Route::get('/feedback', [FeedbackController::class, 'create'])->name('feedback.create');
+
+Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
