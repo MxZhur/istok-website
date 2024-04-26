@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Breadcrumbs from '@/Components/Breadcrumbs.vue';
 import MutedText from '@/Components/MutedText.vue';
 import SiteLayout from '@/Layouts/SiteLayout.vue';
 import { TeachingMaterialType } from '@/types';
@@ -20,6 +21,12 @@ const links: TypeLinkData[] = [
     },
 ];
 
+const breadcrumbs = [
+    {
+        title: 'Материалы для учителей',
+    }
+];
+
 </script>
 
 <template>
@@ -27,6 +34,10 @@ const links: TypeLinkData[] = [
     <Head title="Материалы для учителей" />
 
     <SiteLayout>
+
+        <template #breadcrumbs>
+            <Breadcrumbs :links="breadcrumbs" />
+        </template>
 
         <template #heading>
             Материалы для учителей

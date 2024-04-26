@@ -7,6 +7,7 @@ import { Head } from '@inertiajs/vue3';
 import LearningMaterialItem from './Partials/LearningMaterialItem.vue';
 import MutedText from '@/Components/MutedText.vue';
 import { computed } from 'vue';
+import Breadcrumbs from '@/Components/Breadcrumbs.vue';
 
 type ItemsProp = {
     data: Array<LearningMaterialItemData>;
@@ -20,7 +21,20 @@ const props = defineProps<{
 
 const pageTitle = computed(() => {
     return `Материалы для ${props.grade} класса`;
-})
+});
+
+const breadcrumbs = computed(() => {
+    return [
+        {
+            title: 'Материалы для учеников',
+            url: route('learning_material.index'),
+        },
+        {
+            title: `${props.grade} класс`,
+        }
+
+    ];
+});
 
 </script>
 
@@ -29,6 +43,10 @@ const pageTitle = computed(() => {
     <Head :title="pageTitle" />
 
     <SiteLayout>
+
+        <template #breadcrumbs>
+            <Breadcrumbs :links="breadcrumbs" />
+        </template>
 
         <template #heading>
             {{ pageTitle }}

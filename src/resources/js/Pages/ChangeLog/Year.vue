@@ -5,6 +5,7 @@ import { ChangeLogEntryData } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import MutedText from '@/Components/MutedText.vue';
 import { computed } from 'vue';
+import Breadcrumbs from '@/Components/Breadcrumbs.vue';
 
 type ItemsProp = {
     data: Array<ChangeLogEntryData>;
@@ -18,6 +19,19 @@ const props = defineProps<{
 
 const pageTitle = computed(() => {
     return 'Журнал изменений за ' + props.year + ' год';
+});
+
+const breadcrumbs = computed(() => {
+    return [
+        {
+            title: 'Журнал изменений',
+            url: route('change_log.index'),
+        },
+        {
+            title: `${props.year} год`,
+        }
+
+    ];
 });
 
 function sectionName(sectionKey: string) {
@@ -80,6 +94,10 @@ function entryDate(dInput: string | null) {
     <Head :title="pageTitle" />
 
     <SiteLayout>
+
+        <template #breadcrumbs>
+            <Breadcrumbs :links="breadcrumbs" />
+        </template>
 
         <template #heading>
             {{ pageTitle }}

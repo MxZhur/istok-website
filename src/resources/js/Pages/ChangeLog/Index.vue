@@ -1,12 +1,18 @@
 <script setup lang="ts">
+import Breadcrumbs from '@/Components/Breadcrumbs.vue';
 import MutedText from '@/Components/MutedText.vue';
 import SiteLayout from '@/Layouts/SiteLayout.vue';
-import { TeachingMaterialType } from '@/types';
 import { Head, Link } from '@inertiajs/vue3';
 
 const props = defineProps<{
     years: number[];
 }>();
+
+const breadcrumbs = [
+    {
+        title: 'Журнал изменений',
+    }
+];
 
 </script>
 
@@ -15,6 +21,10 @@ const props = defineProps<{
     <Head title="Журнал изменений" />
 
     <SiteLayout>
+
+        <template #breadcrumbs>
+            <Breadcrumbs :links="breadcrumbs" />
+        </template>
 
         <template #heading>
             Журнал изменений

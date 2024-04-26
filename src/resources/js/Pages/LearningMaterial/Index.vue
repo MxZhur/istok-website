@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Breadcrumbs from '@/Components/Breadcrumbs.vue';
 import MutedText from '@/Components/MutedText.vue';
 import SiteLayout from '@/Layouts/SiteLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
@@ -32,6 +33,12 @@ const links: GradeLinkData[] = [
     },
 ];
 
+const breadcrumbs = [
+    {
+        title: 'Материалы для учеников',
+    }
+];
+
 </script>
 
 <template>
@@ -39,6 +46,10 @@ const links: GradeLinkData[] = [
     <Head title="Материалы для учеников" />
 
     <SiteLayout>
+
+        <template #breadcrumbs>
+            <Breadcrumbs :links="breadcrumbs" />
+        </template>
 
         <template #heading>
             Материалы для учеников

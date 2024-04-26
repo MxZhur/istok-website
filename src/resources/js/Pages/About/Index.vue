@@ -1,15 +1,19 @@
 <script setup lang="ts">
-import Pagination from '@/Components/Pagination.vue';
-import SearchForm from '@/Components/SearchForm.vue';
 import SiteLayout from '@/Layouts/SiteLayout.vue';
 import { CustomPageData } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import MutedText from '@/Components/MutedText.vue';
 import HtmlViewer from '@/Components/HtmlViewer.vue';
+import Breadcrumbs from '@/Components/Breadcrumbs.vue';
 
 defineProps<{
     pageModel: CustomPageData;
 }>();
+
+const breadcrumbs = [
+    {
+        title: 'О себе',
+    }
+];
 
 </script>
 
@@ -18,6 +22,9 @@ defineProps<{
     <Head :title="pageModel.title" />
 
     <SiteLayout>
+        <template #breadcrumbs>
+            <Breadcrumbs :links="breadcrumbs" />
+        </template>
 
         <template #heading>
             {{ pageModel.title }}

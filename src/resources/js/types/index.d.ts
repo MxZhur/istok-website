@@ -125,6 +125,11 @@ export type ChangeLogEntryData = {
     updated_at: string | null;
 }
 
+export type BreadcrumbData = {
+    title: string;
+    url?: string;
+}
+
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
     auth: {
         user: User;

@@ -3,7 +3,13 @@ import MutedText from '@/Components/MutedText.vue';
 import SiteLayout from '@/Layouts/SiteLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import FeedbackForm from './Partials/FeedbackForm.vue';
+import Breadcrumbs from '@/Components/Breadcrumbs.vue';
 
+const breadcrumbs = [
+    {
+        title: 'Обратная связь',
+    }
+];
 </script>
 
 <template>
@@ -11,6 +17,9 @@ import FeedbackForm from './Partials/FeedbackForm.vue';
     <Head title="Обратная связь" />
 
     <SiteLayout>
+        <template #breadcrumbs>
+            <Breadcrumbs :links="breadcrumbs" />
+        </template>
 
         <template #heading>
             Обратная связь

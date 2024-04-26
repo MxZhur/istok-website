@@ -6,6 +6,7 @@ import { BlogPostItemData } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import BlogPostItem from './Partials/BlogPostItem.vue';
 import MutedText from '@/Components/MutedText.vue';
+import Breadcrumbs from '@/Components/Breadcrumbs.vue';
 
 type ItemsProp = {
     data: Array<BlogPostItemData>;
@@ -16,6 +17,12 @@ defineProps<{
     items: ItemsProp;
 }>();
 
+const breadcrumbs = [
+    {
+        title: 'Блог',
+    }
+];
+
 </script>
 
 <template>
@@ -23,6 +30,10 @@ defineProps<{
     <Head title="Блог" />
 
     <SiteLayout>
+
+        <template #breadcrumbs>
+            <Breadcrumbs :links="breadcrumbs" />
+        </template>
 
         <template #heading>
             Блог

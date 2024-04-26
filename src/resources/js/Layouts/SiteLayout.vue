@@ -15,6 +15,11 @@ import SiteMenu from './Partials/SiteMenu.vue';
                     <SiteMenu />
                 </div>
                 <main class="w-full md:w-9/12 rounded-md p-4 bg-white">
+                    <!-- Breadcrumbs -->
+                    <div v-if="$slots.breadcrumbs" class="mb-4">
+                        <slot name="breadcrumbs"></slot>
+                    </div>
+                    <!-- Heading -->
                     <div class="text-3xl font-bold mb-4">
                         <slot name="heading"></slot>
                     </div>
