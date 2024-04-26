@@ -2,7 +2,11 @@
 import { computed, ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
 
-const expanded = ref(false);
+const expanded = ref<boolean>(false);
+
+function toggleExpanded() {
+    expanded.value = !expanded.value;
+}
 
 type NavLinkData = {
     title: string;
@@ -46,10 +50,10 @@ const navLinks = computed(() => {
 
 <template>
     <div class="rounded-md bg-white p-4">
-        <div class="text-xs font-bold pb-4">
+        <div @click="toggleExpanded" class="text-xs font-bold cursor-pointer md:cursor-auto">
             Меню
         </div>
-        <div>
+        <div class="md:block pt-4" :class="{hidden: !expanded}">
             <div v-for="navLink in navLinks" :key="navLink.route">
                 <div class="py-2"
                     v-if="navLink.access !== 'teacher' || ($page.props.auth.user && $page.props.auth.user.role === 2)">
