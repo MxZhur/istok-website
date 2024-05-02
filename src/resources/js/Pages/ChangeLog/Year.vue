@@ -42,6 +42,8 @@ function sectionName(sectionKey: string) {
             return 'Материалы для учеников';
         case 'teaching_materials':
             return 'Материалы для учителей';
+        case 'expert_club':
+            return 'Клуб знатоков';
 
         default:
             return '';
@@ -56,18 +58,27 @@ function actionName(actionKey: string) {
             return 'Запись обновлена';
         case 'blog_deleted':
             return 'Запись удалена';
+
         case 'learning_material_created':
             return 'Новый материал';
         case 'learning_material_updated':
             return 'Материал обновлён';
         case 'learning_material_deleted':
             return 'Материал удалён';
+
         case 'teaching_material_created':
             return 'Новый материал';
         case 'teaching_material_updated':
             return 'Материал обновлён';
         case 'teaching_material_deleted':
             return 'Материал удалён';
+
+        case 'expert_club_entry_created':
+            return 'Новая запись';
+        case 'expert_club_entry_updated':
+            return 'Запись обновлена';
+        case 'expert_club_entry_deleted':
+            return 'Запись удалена';
 
         default:
             return '';

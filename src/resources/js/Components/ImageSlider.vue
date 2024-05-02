@@ -1,5 +1,5 @@
 <template>
-    <div class="py-4">
+    <div class="py-4" v-if="images.length > 0">
         <div v-if="images.length === 1">
             <img :src="images[0]" class="object-contain" height="300">
         </div>

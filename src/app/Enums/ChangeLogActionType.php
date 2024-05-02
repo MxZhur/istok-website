@@ -15,4 +15,8 @@ enum ChangeLogActionType: string
     case TEACHING_MATERIAL_CREATED = 'teaching_material_created';
     case TEACHING_MATERIAL_UPDATED = 'teaching_material_updated';
     case TEACHING_MATERIAL_DELETED = 'teaching_material_deleted';
+    
+    case EXPERT_CLUB_ENTRY_CREATED = 'expert_club_entry_created';
+    case EXPERT_CLUB_ENTRY_UPDATED = 'expert_club_entry_updated';
+    case EXPERT_CLUB_ENTRY_DELETED = 'expert_club_entry_deleted';
 }

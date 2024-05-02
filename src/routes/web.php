@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ChangeLogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\ExpertClubController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LearningMaterialController;
@@ -29,6 +30,11 @@ Route::prefix('teaching_material')->middleware('teacher')->group(function () {
     Route::get('/', [TeachingMaterialController::class, 'index'])->name('teaching_material.index');
     Route::get('/{type}', [TeachingMaterialController::class, 'type'])->name('teaching_material.type');
     Route::get('/{type}/{id}', [TeachingMaterialController::class, 'show'])->name('teaching_material.show');
+});
+
+Route::prefix('expert_club')->group(function () {
+    Route::get('/', [ExpertClubController::class, 'index'])->name('expert_club.index');
+    Route::get('/{id}', [ExpertClubController::class, 'show'])->name('expert_club.show');
 });
 
 Route::prefix('change_log')->group(function () {

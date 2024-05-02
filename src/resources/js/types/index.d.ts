@@ -67,7 +67,25 @@ export type TeachingMaterialData = {
     storage_files: StorageFileData[];
 };
 
-export type EntityType = 'blog_post' | 'learning_material' | 'teaching_material';
+export type ExpertClubItemData = {
+    id: number;
+    title: string;
+    created_at: string | null;
+    updated_at: string | null;
+    tags: TagData[];
+};
+
+export type ExpertClubEntryData = {
+    id: number;
+    title: string;
+    body: string;
+    created_at: string | null;
+    updated_at: string | null;
+    tags: TagData[];
+    storage_files: StorageFileData[];
+};
+
+export type EntityType = 'blog_post' | 'learning_material' | 'teaching_material' | 'expert_club';
 
 export type CommentData = {
     id: number;

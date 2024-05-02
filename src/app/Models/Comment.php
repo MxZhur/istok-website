@@ -13,6 +13,7 @@ class Comment extends Model
     public const ENTITY_BLOG_POST = 'blog_post';
     public const ENTITY_LEARNING_MATERIAL = 'learning_material';
     public const ENTITY_TEACHING_MATERIAL = 'teaching_material';
+    public const ENTITY_EXPERT_CLUB = 'expert_club';
 
     protected $fillable = [
         'entity_type',

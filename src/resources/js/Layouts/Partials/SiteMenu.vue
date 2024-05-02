@@ -30,6 +30,10 @@ const navLinks = computed(() => {
             access: 'teacher'
         },
         {
+            title: 'Клуб знатоков',
+            route: 'expert_club.index',
+        },
+        {
             title: 'Журнал изменений',
             route: 'change_log.index',
         },
