@@ -44,6 +44,8 @@ function sectionName(sectionKey: string) {
             return 'Материалы для учителей';
         case 'expert_club':
             return 'Клуб знатоков';
+        case 'mini_games':
+            return 'Дидактические игры';
 
         default:
             return '';
@@ -79,6 +81,13 @@ function actionName(actionKey: string) {
             return 'Запись обновлена';
         case 'expert_club_entry_deleted':
             return 'Запись удалена';
+
+        case 'mini_game_created':
+            return 'Новая игра';
+        case 'mini_game_updated':
+            return 'Игра обновлена';
+        case 'mini_game_deleted':
+            return 'Игра удалена';
 
         default:
             return '';

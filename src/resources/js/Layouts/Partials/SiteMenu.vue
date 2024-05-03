@@ -34,6 +34,10 @@ const navLinks = computed(() => {
             route: 'expert_club.index',
         },
         {
+            title: 'Дидактические игры',
+            route: 'mini_game.index',
+        },
+        {
             title: 'Журнал изменений',
             route: 'change_log.index',
         },

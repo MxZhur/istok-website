@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\MiniGameController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ChangeLogController;
 use App\Http\Controllers\CommentController;
@@ -30,6 +31,12 @@ Route::prefix('teaching_material')->middleware('teacher')->group(function () {
     Route::get('/', [TeachingMaterialController::class, 'index'])->name('teaching_material.index');
     Route::get('/{type}', [TeachingMaterialController::class, 'type'])->name('teaching_material.type');
     Route::get('/{type}/{id}', [TeachingMaterialController::class, 'show'])->name('teaching_material.show');
+});
+
+Route::prefix('mini_game')->group(function () {
+    Route::get('/', [MiniGameController::class, 'index'])->name('mini_game.index');
+    Route::get('/{category}', [MiniGameController::class, 'category'])->name('mini_game.category');
+    Route::get('/{category}/{id}', [MiniGameController::class, 'show'])->name('mini_game.show');
 });
 
 Route::prefix('expert_club')->group(function () {

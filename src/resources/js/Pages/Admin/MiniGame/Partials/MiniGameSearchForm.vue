@@ -4,10 +4,10 @@
             <TextInput class="flex-grow mr-2 w-32" id="search" type="text" v-model="form.q" autocomplete="search"
                 placeholder="Поиск" />
 
-            <select class="rounded-md mr-2" v-model="form.type">
+            <select class="rounded-md mr-2" v-model="form.category">
                 <option value="">Все типы</option>
-                <option v-for="(typeTitle, typeValue) in typeValues" :value="typeValue">
-                    {{ typeTitle }}
+                <option v-for="(categoryTitle, categoryValue) in categoryValues" :value="categoryValue">
+                    {{ categoryTitle }}
                 </option>
             </select>
             <PrimaryButton>
@@ -23,18 +23,22 @@ import TextInput from '@/Components/TextInput.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SearchIcon from '@/Components/Icons/SearchIcon.vue';
 
-const typeValues = {
-    'methodological_work': 'Методическая работа',
-    'educational_work': 'Воспитательная работа',
+const categoryValues = {
+    'world_history': 'Всемирная история',
+    'russia_9_13_century': 'Древняя Русь IX-XIII вв.',
+    'russia_14_17_century': 'Московская Русь XIV-XVII вв.',
+    'russia_18_19_century': 'Российская империя XVIII-XIX вв.',
+    'russia_20_century': 'Россия и СССР: век XX',
+    'russia_21_century': 'Россия: век XXI',
 };
 
 const form = useForm({
     q: '',
-    type: '',
+    category: '',
 });
 
 function formSubmit() {
-    form.get(route('admin.teaching_materials.index'), {
+    form.get(route('admin.mini_games.index'), {
         preserveState: true,
     });
 }

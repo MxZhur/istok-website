@@ -45,7 +45,7 @@ export type LearningMaterialData = {
     storage_files: StorageFileData[];
 };
 
-export type TeachingMaterialType = 'methodological_work' | 'educational_work';
+export type TeachingMaterialType = "methodological_work" | "educational_work";
 
 export type TeachingMaterialItemData = {
     id: number;
@@ -85,7 +85,36 @@ export type ExpertClubEntryData = {
     storage_files: StorageFileData[];
 };
 
-export type EntityType = 'blog_post' | 'learning_material' | 'teaching_material' | 'expert_club';
+export type MiniGameCategory =
+    | "world_history"
+    | "russia_9_13_century"
+    | "russia_14_17_century"
+    | "russia_18_19_century"
+    | "russia_20_century"
+    | "russia_21_century";
+
+export type MiniGameItemData = {
+    id: number;
+    category: string;
+    title: string;
+    created_at: string | null;
+    updated_at: string | null;
+};
+
+export type MiniGameData = {
+    id: number;
+    category: string;
+    title: string;
+    body: string;
+    created_at: string | null;
+    updated_at: string | null;
+};
+
+export type EntityType =
+    | "blog_post"
+    | "learning_material"
+    | "teaching_material"
+    | "expert_club";
 
 export type CommentData = {
     id: number;
@@ -99,7 +128,7 @@ export type CommentData = {
     updated_at: string | null;
     user: User;
     children?: CommentData[];
-}
+};
 
 export type FeedbackEntryData = {
     id: number;
@@ -108,12 +137,12 @@ export type FeedbackEntryData = {
     created_at: string | null;
     updated_at: string | null;
     user: User;
-}
+};
 
 export type TagData = {
     id: number;
     name: string;
-}
+};
 
 export type StorageFileData = {
     id: number;
@@ -121,7 +150,7 @@ export type StorageFileData = {
     url: string;
     original_name: string;
     type: string;
-}
+};
 
 export type CustomPageData = {
     id: number;
@@ -130,7 +159,7 @@ export type CustomPageData = {
     body: string;
     created_at: string | null;
     updated_at: string | null;
-}
+};
 
 export type ChangeLogEntryData = {
     id: number;
@@ -141,14 +170,16 @@ export type ChangeLogEntryData = {
     link_url: string;
     created_at: string | null;
     updated_at: string | null;
-}
+};
 
 export type BreadcrumbData = {
     title: string;
     url?: string;
-}
+};
 
-export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
+export type PageProps<
+    T extends Record<string, unknown> = Record<string, unknown>
+> = T & {
     auth: {
         user: User;
     };

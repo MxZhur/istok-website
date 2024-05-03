@@ -5,11 +5,13 @@ namespace App\Providers;
 use App\Models\BlogPost;
 use App\Models\ExpertClubEntry;
 use App\Models\LearningMaterial;
+use App\Models\MiniGame;
 use App\Models\TeachingMaterial;
 use App\Observers\BlogPostObserver;
 use App\Observers\LearningMaterialObserver;
 use App\Observers\TeachingMaterialObserver;
 use App\Observers\ExpertClubEntryObserver;
+use App\Observers\MiniGameObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -31,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
         LearningMaterial::observe(LearningMaterialObserver::class);
         TeachingMaterial::observe(TeachingMaterialObserver::class);
         ExpertClubEntry::observe(ExpertClubEntryObserver::class);
+        MiniGame::observe(MiniGameObserver::class);
     }
 }

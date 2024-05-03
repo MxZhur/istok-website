@@ -30,6 +30,10 @@ const navLinks: NavLinkData[] = [
         route: 'admin.expert_club.index',
     },
     {
+        title: 'Мини-игры',
+        route: 'admin.mini_games.index',
+    },
+    {
         title: 'О себе',
         route: 'admin.about.edit',
     },
