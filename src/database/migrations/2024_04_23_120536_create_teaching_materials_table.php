@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('teaching_materials', function (Blueprint $table) {
             $table->id();
             $table->text('title');
-            $table->text('body');
+            $table->longText('body');
             $table->string('type');
             $table->timestamps();
 

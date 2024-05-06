@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('learning_materials', function (Blueprint $table) {
             $table->id();
             $table->text('title');
-            $table->text('body');
+            $table->longText('body');
             $table->integer('grade');
             $table->timestamps();
 
