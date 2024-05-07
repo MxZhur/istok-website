@@ -30,6 +30,10 @@ const navLinks = computed(() => {
             access: 'teacher'
         },
         {
+            title: 'Проверь себя',
+            route: 'quiz.index',
+        },
+        {
             title: 'Клуб знатоков',
             route: 'expert_club.index',
         },
@@ -61,7 +65,7 @@ const navLinks = computed(() => {
         <div @click="toggleExpanded" class="text-xs font-bold cursor-pointer md:cursor-auto">
             Меню
         </div>
-        <div class="md:block pt-4" :class="{hidden: !expanded}">
+        <div class="md:block pt-4" :class="{ hidden: !expanded }">
             <div v-for="navLink in navLinks" :key="navLink.route">
                 <div class="py-2"
                     v-if="navLink.access !== 'teacher' || ($page.props.auth.user && $page.props.auth.user.role === 2)">

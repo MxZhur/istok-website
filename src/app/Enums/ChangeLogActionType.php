@@ -23,4 +23,8 @@ enum ChangeLogActionType: string
     case MINI_GAME_CREATED = 'mini_game_created';
     case MINI_GAME_UPDATED = 'mini_game_updated';
     case MINI_GAME_DELETED = 'mini_game_deleted';
+
+    case QUIZ_CREATED = 'quiz_created';
+    case QUIZ_UPDATED = 'quiz_updated';
+    case QUIZ_DELETED = 'quiz_deleted';
 }

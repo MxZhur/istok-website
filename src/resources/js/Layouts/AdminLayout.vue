@@ -26,6 +26,10 @@ const navLinks: NavLinkData[] = [
         route: 'admin.teaching_materials.index',
     },
     {
+        title: 'Тесты',
+        route: 'admin.quizzes.index',
+    },
+    {
         title: 'Клуб знатоков',
         route: 'admin.expert_club.index',
     },

@@ -22,6 +22,7 @@
     "dependencies": {
         "@vueup/vue-quill": "^1.2.0",
         "dayjs": "^1.11.10",
+        "nanoid": "^5.0.7",
         "vue3-carousel": "^0.3.3"
     }
 }

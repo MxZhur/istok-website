@@ -9,4 +9,5 @@ enum ChangeLogSection: string
     case TEACHING_MATERIALS = 'teaching_materials';
     case EXPERT_CLUB = 'expert_club';
     case MINI_GAMES = 'mini_games';
+    case QUIZZES = 'quizzes';
 }

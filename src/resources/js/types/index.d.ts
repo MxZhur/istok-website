@@ -110,6 +110,41 @@ export type MiniGameData = {
     updated_at: string | null;
 };
 
+export type QuizType = "grade_9" | "grade_11";
+
+export type QuizAnswerType = "pick_single" | "pick_multiple" | "number_sequence" | "custom_text";
+
+export type QuizQuestionData = {
+    id: string;
+    body: string;
+    answerType: QuizAnswerType;
+    answers: {
+        id: string;
+        name: string;
+    }[];
+    correctAnswers: string[];
+    maxPoints: number;
+    allowPartiallyCorrectAnswers: boolean;
+    requireAscendingOrder: boolean;
+};
+
+export type QuizItemData = {
+    id: number;
+    title: string;
+    type: QuizType;
+    created_at: string | null;
+    updated_at: string | null;
+};
+
+export type QuizData = {
+    id: number;
+    title: string;
+    type: QuizType;
+    questions: QuizQuestionData[];
+    created_at: string | null;
+    updated_at: string | null;
+}
+
 export type EntityType =
     | "blog_post"
     | "learning_material"

@@ -46,6 +46,8 @@ function sectionName(sectionKey: string) {
             return 'Клуб знатоков';
         case 'mini_games':
             return 'Дидактические игры';
+        case 'quizzes':
+            return 'Тесты (Проверь себя)';
 
         default:
             return '';
@@ -88,6 +90,13 @@ function actionName(actionKey: string) {
             return 'Игра обновлена';
         case 'mini_game_deleted':
             return 'Игра удалена';
+
+        case 'quiz_created':
+            return 'Новый тест';
+        case 'quiz_updated':
+            return 'Тест обновлён';
+        case 'quiz_deleted':
+            return 'Тест удалён';
 
         default:
             return '';

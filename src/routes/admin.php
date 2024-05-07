@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ExpertClubController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\LearningMaterialController;
 use App\Http\Controllers\Admin\MiniGameController;
+use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\Admin\TeachingMaterialController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('teaching_materials', TeachingMaterialController::class)->names('admin.teaching_materials');
     Route::resource('expert_club', ExpertClubController::class)->names('admin.expert_club');
     Route::resource('mini_games', MiniGameController::class)->names('admin.mini_games');
+    Route::resource('quizzes', QuizController::class)->names('admin.quizzes');
 
     Route::get('comments', [CommentController::class, 'index'])->name('admin.comments.index');
     Route::put('comments/{id}/block', [CommentController::class, 'block'])->name('admin.comments.block');
