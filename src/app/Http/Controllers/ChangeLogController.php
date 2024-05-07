@@ -33,7 +33,7 @@ class ChangeLogController extends Controller
             ->orderByDesc('created_at');
 
         /**@var LengthAwarePaginator */
-        $paginate = $itemsQuery->paginate(20);
+        $paginate = $itemsQuery->paginate(50);
 
         $items = $paginate->withQueryString();
 
