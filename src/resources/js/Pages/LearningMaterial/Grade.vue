@@ -2,12 +2,13 @@
 import Pagination from '@/Components/Pagination.vue';
 import SearchForm from '@/Components/SearchForm.vue';
 import SiteLayout from '@/Layouts/SiteLayout.vue';
-import { LearningMaterialItemData } from '@/types';
+import { LearningMaterialItemData, TagData } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import LearningMaterialItem from './Partials/LearningMaterialItem.vue';
 import MutedText from '@/Components/MutedText.vue';
 import { computed } from 'vue';
 import Breadcrumbs from '@/Components/Breadcrumbs.vue';
+import TagCloud from '@/Components/TagCloud.vue';
 
 type ItemsProp = {
     data: Array<LearningMaterialItemData>;
@@ -17,6 +18,8 @@ type ItemsProp = {
 const props = defineProps<{
     grade: number;
     items: ItemsProp;
+    tags: TagData[];
+    q: string | null;
 }>();
 
 const pageTitle = computed(() => {
@@ -53,7 +56,11 @@ const breadcrumbs = computed(() => {
         </template>
 
         <div>
-            <SearchForm :searchUrl="route('learning_material.grade', {grade: grade})" />
+            <SearchForm :searchUrl="route('learning_material.grade', {grade: grade})" :q="q" />
+        </div>
+
+        <div>
+            <TagCloud :tags="tags" :searchUrl="route('learning_material.grade', {grade: grade})" />
         </div>
 
         <div v-if="items.data.length > 0">

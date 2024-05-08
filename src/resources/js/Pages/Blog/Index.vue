@@ -2,11 +2,12 @@
 import Pagination from '@/Components/Pagination.vue';
 import SearchForm from '@/Components/SearchForm.vue';
 import SiteLayout from '@/Layouts/SiteLayout.vue';
-import { BlogPostItemData } from '@/types';
+import { BlogPostItemData, TagData } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import BlogPostItem from './Partials/BlogPostItem.vue';
 import MutedText from '@/Components/MutedText.vue';
 import Breadcrumbs from '@/Components/Breadcrumbs.vue';
+import TagCloud from '@/Components/TagCloud.vue';
 
 type ItemsProp = {
     data: Array<BlogPostItemData>;
@@ -15,6 +16,8 @@ type ItemsProp = {
 
 defineProps<{
     items: ItemsProp;
+    q: string | null;
+    tags: TagData[];
 }>();
 
 const breadcrumbs = [
@@ -40,7 +43,11 @@ const breadcrumbs = [
         </template>
 
         <div>
-            <SearchForm :searchUrl="route('blog.index')" />
+            <SearchForm :searchUrl="route('blog.index')" :q="q" />
+        </div>
+
+        <div>
+            <TagCloud :tags="tags" :searchUrl="route('blog.index')" />
         </div>
 
         <div v-if="items.data.length > 0">

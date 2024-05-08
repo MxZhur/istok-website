@@ -30,7 +30,6 @@ class ExpertClubController extends Controller
                 $query->select('expert_club_entry_id')
                     ->from('expert_club_entry_tag')
                     ->whereIn('tag_id', $tagsIds);
-
             }, 'or');
         }
 
@@ -46,13 +45,21 @@ class ExpertClubController extends Controller
 
         $items = $paginate->withQueryString();
 
+        $tags = Tag::query()
+            ->byEntityType(Tag::ENTITY_EXPERT_CLUB)
+            ->orderBy('name')
+            ->get();
+
         return Inertia::render('ExpertClub/Index', [
-            'items' => $items
+            'items' => $items,
+            'tags' => $tags,
+            'q' => $q,
         ]);
     }
 
 
-    public function show(string $id, CommentService $commentService) {
+    public function show(string $id, CommentService $commentService)
+    {
         $item = ExpertClubEntry::findOrFail($id);
 
         $comments = $commentService->getCommentsTree(Comment::ENTITY_EXPERT_CLUB, $id);

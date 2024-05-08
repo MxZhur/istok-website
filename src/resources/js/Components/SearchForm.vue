@@ -18,10 +18,11 @@ import SearchIcon from '@/Components/Icons/SearchIcon.vue';
 
 const props = defineProps<{
     searchUrl: string;
+    q: string | null;
 }>();
 
 const form = useForm({
-    q: '',
+    q: props.q ?? '',
 });
 
 function formSubmit() {

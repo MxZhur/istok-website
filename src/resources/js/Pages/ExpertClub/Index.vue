@@ -2,11 +2,12 @@
 import Pagination from '@/Components/Pagination.vue';
 import SearchForm from '@/Components/SearchForm.vue';
 import SiteLayout from '@/Layouts/SiteLayout.vue';
-import { ExpertClubItemData } from '@/types';
+import { ExpertClubItemData, TagData } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import ExpertClubItem from './Partials/ExpertClubItem.vue';
 import MutedText from '@/Components/MutedText.vue';
 import Breadcrumbs from '@/Components/Breadcrumbs.vue';
+import TagCloud from '@/Components/TagCloud.vue';
 
 type ItemsProp = {
     data: Array<ExpertClubItemData>;
@@ -15,6 +16,8 @@ type ItemsProp = {
 
 defineProps<{
     items: ItemsProp;
+    tags: TagData[];
+    q: string | null;
 }>();
 
 const breadcrumbs = [
@@ -40,7 +43,11 @@ const breadcrumbs = [
         </template>
 
         <div>
-            <SearchForm :searchUrl="route('expert_club.index')" />
+            <SearchForm :searchUrl="route('expert_club.index')" :q="q" />
+        </div>
+
+        <div>
+            <TagCloud :tags="tags" :searchUrl="route('expert_club.index')" />
         </div>
 
         <div v-if="items.data.length > 0">

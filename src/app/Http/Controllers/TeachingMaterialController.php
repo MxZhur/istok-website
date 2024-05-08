@@ -35,7 +35,7 @@ class TeachingMaterialController extends Controller
                     ->toArray();
 
                 $query->select('teaching_material_id')
-                    ->from('teaching_material_tag')
+                    ->from('tag_teaching_material')
                     ->whereIn('tag_id', $tagsIds);
 
             }, 'or');
@@ -54,9 +54,16 @@ class TeachingMaterialController extends Controller
 
         $items = $paginate->withQueryString();
 
+        $tags = Tag::query()
+            ->byEntityType(Tag::ENTITY_TEACHING_MATERIAL)
+            ->orderBy('name')
+            ->get();
+
         return Inertia::render('TeachingMaterial/Type', [
             'type' => $type,
             'items' => $items,
+            'tags' => $tags,
+            'q' => $q,
         ]);
     }
 

@@ -54,9 +54,16 @@ class LearningMaterialController extends Controller
 
         $items = $paginate->withQueryString();
 
+        $tags = Tag::query()
+            ->byEntityType(Tag::ENTITY_LEARNING_MATERIAL)
+            ->orderBy('name')
+            ->get();
+
         return Inertia::render('LearningMaterial/Grade', [
             'grade' => $grade,
             'items' => $items,
+            'tags' => $tags,
+            'q' => $q,
         ]);
     }
 

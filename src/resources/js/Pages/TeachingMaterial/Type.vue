@@ -2,12 +2,13 @@
 import Pagination from '@/Components/Pagination.vue';
 import SearchForm from '@/Components/SearchForm.vue';
 import SiteLayout from '@/Layouts/SiteLayout.vue';
-import { TeachingMaterialItemData, TeachingMaterialType } from '@/types';
+import { TagData, TeachingMaterialItemData, TeachingMaterialType } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import TeachingMaterialItem from './Partials/TeachingMaterialItem.vue';
 import MutedText from '@/Components/MutedText.vue';
 import { computed } from 'vue';
 import Breadcrumbs from '@/Components/Breadcrumbs.vue';
+import TagCloud from '@/Components/TagCloud.vue';
 
 type ItemsProp = {
     data: Array<TeachingMaterialItemData>;
@@ -17,6 +18,8 @@ type ItemsProp = {
 const props = defineProps<{
     type: TeachingMaterialType;
     items: ItemsProp;
+    tags: TagData[];
+    q: string | null;
 }>();
 
 const pageTitle = computed(() => {
@@ -59,7 +62,11 @@ const breadcrumbs = computed(() => {
         </template>
 
         <div>
-            <SearchForm :searchUrl="route('teaching_material.type', { type: type })" />
+            <SearchForm :searchUrl="route('teaching_material.type', { type: type })" :q="q" />
+        </div>
+
+        <div>
+            <TagCloud :tags="tags" :searchUrl="route('teaching_material.type', { type: type })" />
         </div>
 
         <div v-if="items.data.length > 0">

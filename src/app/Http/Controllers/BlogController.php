@@ -46,8 +46,15 @@ class BlogController extends Controller
 
         $items = $paginate->withQueryString();
 
+        $tags = Tag::query()
+            ->byEntityType(Tag::ENTITY_BLOG)
+            ->orderBy('name')
+            ->get();
+
         return Inertia::render('Blog/Index', [
-            'items' => $items
+            'items' => $items,
+            'q' => $q,
+            'tags' => $tags,
         ]);
     }
 
