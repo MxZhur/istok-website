@@ -47,14 +47,14 @@ const foundTags = computed(() => {
 
 <template>
     <div>
-        <div>
+        <div class="flex flex-row flex-wrap">
             <TagPill v-for="tag in model" :name="tag" :key="tag" :showRemoveButton="true" @remove="removeTag(tag)" />
         </div>
         <TextInput @keydown.enter.prevent="addTag" class="mt-1 block w-full" placeholder="Введите тег и нажмите Enter"
             v-model="newTagText" />
         <div v-if="foundTags.length > 0">
             <div>Существующие теги</div>
-            <div>
+            <div class="flex flex-row flex-wrap">
                 <TagPill v-for="tag in foundTags" :name="tag" :key="tag" :showAddButton="true" @add="addExistingTag(tag)" />
             </div>
         </div>

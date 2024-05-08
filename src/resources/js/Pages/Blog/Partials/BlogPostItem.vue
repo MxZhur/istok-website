@@ -5,7 +5,7 @@
             {{ item.title }}
             </Link>
         </div>
-        <div>
+        <div class="flex flex-row flex-wrap">
             <TagPill v-for="tag in item.tags" :name="tag.name" :key="tag.id" />
         </div>
         <div class="flex flex-row justify-between items-center">

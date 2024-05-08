@@ -8,7 +8,7 @@
         <div>
             {{ materialTypeName }}
         </div>
-        <div>
+        <div class="flex flex-row flex-wrap">
             <TagPill v-for="tag in item.tags" :name="tag.name" :key="item.id" />
         </div>
         <div class="flex flex-row justify-between items-center">

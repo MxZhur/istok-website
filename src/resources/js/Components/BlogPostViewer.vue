@@ -10,7 +10,7 @@
 
     <HtmlViewer :content="item.body" />
 
-    <div class="py-4">
+    <div class="py-4 flex flex-row flex-wrap">
         <TagPill v-for="tag in item.tags" :name="tag.name" :key="tag.id" />
     </div>
 </template>
