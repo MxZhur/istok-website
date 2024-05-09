@@ -41,6 +41,7 @@ class MiniGameController extends Controller
         return Inertia::render('MiniGame/Category', [
             'category' => $category,
             'items' => $items,
+            'q' => $q,
         ]);
     }
 

@@ -17,6 +17,7 @@ type ItemsProp = {
 const props = defineProps<{
     category: MiniGameCategory;
     items: ItemsProp;
+    q: string | null;
 }>();
 
 const pageTitle = computed(() => {
@@ -67,7 +68,7 @@ const breadcrumbs = computed(() => {
         </template>
 
         <div>
-            <SearchForm :searchUrl="route('mini_game.category', { category: category })" />
+            <SearchForm :searchUrl="route('mini_game.category', { category: category })" :q="q" />
         </div>
 
         <div v-if="items.data.length > 0">

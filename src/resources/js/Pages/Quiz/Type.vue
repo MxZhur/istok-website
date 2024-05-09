@@ -17,6 +17,7 @@ type ItemsProp = {
 const props = defineProps<{
     type: QuizType;
     items: ItemsProp;
+    q: string | null;
 }>();
 
 const pageTitle = computed(() => {
@@ -59,7 +60,7 @@ const breadcrumbs = computed(() => {
         </template>
 
         <div>
-            <SearchForm :searchUrl="route('quiz.type', { type: type })" />
+            <SearchForm :searchUrl="route('quiz.type', { type: type })" :q="q" />
         </div>
 
         <div v-if="items.data.length > 0">

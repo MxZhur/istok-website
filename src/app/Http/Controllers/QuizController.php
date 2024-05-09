@@ -40,6 +40,7 @@ class QuizController extends Controller
         return Inertia::render('Quiz/Type', [
             'type' => $type,
             'items' => $items,
+            'q' => $q,
         ]);
     }
 
